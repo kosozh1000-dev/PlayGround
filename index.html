@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101416" />
+  <title>LAST STOP: CENTER</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game"></canvas>
+    <div class="vignette"></div>
+    <div id="hud" class="hidden">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">Л</span><div><b>LAST STOP</b><small>CENTER · SECTOR 01</small></div></div>
+        <div class="objective"><span class="live-dot"></span><span id="objective-text">CLEAR THE COURTYARD</span></div>
+        <div class="currency"><span class="coin">₽</span><span id="credits">00</span><small>SCRAP CREDIT</small></div>
+      </header>
+      <div class="wave-label"><span id="wave-text">WAVE 01 / 03</span><i></i><span id="enemy-count">3 HOSTILES</span></div>
+      <div id="boss-bar-wrap" class="hidden"><div class="boss-title"><span>THREAT IDENTIFIED</span><b>THE YARD FOREMAN</b></div><div class="boss-track"><i id="boss-bar"></i></div><small id="boss-phase">PHASE I · “EARLY FINISH IS NOT ON THE PLAN”</small></div>
+      <section class="bottom-hud">
+        <div class="health-module"><div class="stat-top"><span>VITALS</span><b id="health-value">100</b></div><div class="health-track"><i id="health-bar"></i></div><div class="health-note" id="health-note">YOU LOOK TERRIBLE. STILL ALIVE.</div></div>
+        <div class="weapon-module"><div class="weapon-icon">⌁</div><div><span class="eyebrow">HOUSEHOLD ENGINEERING</span><b>LEAKY PIPE</b><small>COMMON <span>·</span> INFINITE AMMO</small></div></div>
+        <div class="controls-hint"><span>WASD</span> MOVE <span>SHIFT</span> SPRINT <span>SPACE</span> ROLL <span>F</span> KICK <span>LMB</span> FIRE</div>
+      </section>
+      <button id="interaction" class="interaction hidden"><span class="keycap">E</span><span id="interaction-text">OPEN CHEST</span></button>
+      <div id="toast" class="toast"></div>
+      <div id="damage-flash"></div>
+      <div id="crosshair"><i></i><i></i><i></i><i></i><b></b></div>
+      <div class="touch-ui" id="touch-ui">
+        <div class="stick-zone" id="move-zone"><div class="stick-ring"><i id="move-knob"></i></div><span>MOVE</span></div>
+        <div class="stick-zone aim-zone" id="aim-zone"><div class="stick-ring"><i id="aim-knob"></i></div><span>AIM</span></div>
+        <button class="touch-action fire-action" id="fire-btn">FIRE</button>
+        <button class="touch-action kick-action" id="kick-btn">KICK</button>
+        <button class="touch-action roll-action" id="roll-btn">ROLL</button>
+        <button class="touch-action sprint-action" id="sprint-btn">RUN</button>
+      </div>
+    </div>
+    <div id="start-screen" class="screen">
+      <div class="paper-card">
+        <div class="stamp">ГОРОД · 01</div><p class="eyebrow">A VERY SMALL RUSSIAN APOCALYPSE</p>
+        <h1>LAST<br/><em>STOP.</em></h1>
+        <div class="rule"></div>
+        <p class="lede">CENTER DISTRICT — AFTER THE END OF EVERYTHING,<br/>THE MUNICIPALITY STILL EXPECTS YOU TO CLEAR THE YARD.</p>
+        <div class="briefing"><b>FIELD NOTE № 04</b><span>“The pipe is leaking. The city is also leaking.<br/>Try not to stand in either.”</span></div>
+        <button id="start-btn" class="primary-btn">CLOCK IN <span>→</span></button>
+        <div class="start-controls">MOUSE / WASD &nbsp;·&nbsp; TOUCH CONTROLS AVAILABLE</div>
+      </div>
+      <div class="screen-foot"><span>ЦЕНТР · МОСКВА-ОБЛАСТЬ</span><span>NO HEROES. JUST SHIFT WORK.</span></div>
+    </div>
+    <div id="end-screen" class="screen hidden"><div class="paper-card end-card"><p class="eyebrow" id="end-kicker">SHIFT COMPLETE</p><h2 id="end-title">THE YARD IS<br/><em>QUIET.</em></h2><p class="lede" id="end-copy">An accounting error has been corrected.</p><div class="briefing"><b>SHIFT REPORT</b><span id="end-stats"></span></div><button id="restart-btn" class="primary-btn">WORK ANOTHER SHIFT <span>↻</span></button></div><div class="screen-foot"><span>LAST STOP · CENTER</span><span>THE CITY THANKS YOU (IT DOESN'T)</span></div></div>
+    <div id="loading" class="loading">LOADING SECTOR<span>···</span></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
